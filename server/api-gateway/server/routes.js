@@ -8,7 +8,7 @@ const status = require('http-status')
 const crypto = require('crypto')
 
 const restream = function(proxyReq, req, res, options) {
-    if(req.body) {
+    if(req.method == 'POST' && req.body) {
         let bodyData = JSON.stringify(req.body)
         proxyReq.setHeader('Content-Type','application/json')
         proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData))
