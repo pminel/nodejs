@@ -7,9 +7,18 @@ const session = require('express-session')
 const status = require('http-status')
 const crypto = require('crypto')
 
-let usersProxy = proxy({ target: 'http://localhost:8500', changeOrigin: true })
+const restream = function(proxyReq, req, res, options) {
+    if(req.body) {
+        let bodyData = JSON.stringify(req.body)
+        proxyReq.setHeader('Content-Type','application/json')
+        proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData))
+        proxyReq.write(bodyData)
+    }
+}
 
 function init(server, db) {
+    let usersProxy = proxy({ target: 'http://localhost:8500', changeOrigin: true, onProxyReq: restream })
+
     server.set('trust proxy', 1)
     server.use(session({
         secret: 'my_session',
@@ -19,7 +28,7 @@ function init(server, db) {
     }))
 
     server.get('*', function (req, res, next) {
-        console.log('-- ' + req.originalUrl + ' --')
+        console.log('-- req=' + req.originalUrl + ' --')
         return next()
     });
 

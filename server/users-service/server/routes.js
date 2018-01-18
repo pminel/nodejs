@@ -42,13 +42,18 @@ function init(server, db) {
         })
     })
 
-    server.put('/users/add', isLogged, (req, res) => {
-        const username = req.params.username
-        usersModel.findByUsername(username).then((rows) => {
+    server.post('/users/add', isLogged, (req, res) => {
+        const username = req.body.username
+        const nome = req.body.nome
+        const cognome = req.body.cognome
+
+        res.status(200).json({ success: true, message: "User added" })
+
+        /* usersModel.findByUsername(username).then((rows) => {
             res.status(200).json({ success: true, data: rows })
         }).catch((error) => {
             console.log(error)
-        })
+        }) */
     })
 }
 

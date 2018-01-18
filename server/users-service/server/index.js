@@ -17,7 +17,7 @@ module.exports = function() {
         server.set('hostname', serverConfig.hostname)
 
         server.use(bodyParser.json())
-        server.use(bodyParser.urlencoded({ extended: false }))
+        server.use(bodyParser.urlencoded({ extended: true }))
     }
 
     let start = function() {
