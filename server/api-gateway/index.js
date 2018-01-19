@@ -1,7 +1,9 @@
 'use strict'
 
-const server = require('./server')()
-const config = require('./config')
+const config = require('./config/config')
+const server = require('./server/server')()
+
 
 server.create(config)
+server.init()
 server.start()
