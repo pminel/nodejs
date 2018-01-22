@@ -3,6 +3,17 @@
 const httpStatus = require('http-status')
 const passport = require('passport')
 
+const proxy = require('http-proxy-middleware')
+const restream = function(proxyReq, req, res, options) {
+    if (req.method == 'POST' && req.body) {
+        let bodyData = JSON.stringify(req.body);
+        proxyReq.setHeader('Content-Type','application/json');
+        proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData));
+        proxyReq.write(bodyData);
+    }
+}
+let userProxy = proxy({ target: 'http://localhost:8500', changeOrigin: true, onProxyReq: restream })
+
 
 module.exports = function(app) {
     let init
@@ -16,12 +27,7 @@ module.exports = function(app) {
 
         app.use('/auth', require('./api/auth'))
 
-
-        /* app.all('/*', function (req, res) {
-            res
-            .status(httpStatus.BAD_GATEWAY)
-            .json({ success: false, error: 'Bad gateway' })
-        }) */
+        app.use('/user', passport.authenticate('local', { session: false, failureRedirect: '/auth/noauth' }), userProxy)
     }
 
     return {
