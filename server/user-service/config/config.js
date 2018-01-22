@@ -7,17 +7,17 @@ const config = {
 }
 
 const mysqlconfig = {
-    env: 'dev',
+    /* env: 'dev',
     host: 'localhost',
     port: '3306',
     user: 'root',
     password: 'super',
-    database: 'pminel'
-    /* host: '10.198.2.115',
+    database: 'pminel' */
+    host: '10.198.2.115',
     port: '3306',
     user: 'root',
     password: 'm.k$dvd01',
-    database: 'emetadata' */
+    database: 'emetadata'
 }
 
 module.exports = {

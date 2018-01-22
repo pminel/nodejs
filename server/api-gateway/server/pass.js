@@ -26,7 +26,7 @@ passport.use(new LocalStrategy({
                         // last password row
                         const rowPassword = rows[0]
 
-                        const lastPassword = rowPassword.segreto
+                        const lastPassword = rowPassword.password
                         const hashPassword = hashText(password)
 
                         // check if last password is equal to hash of given password

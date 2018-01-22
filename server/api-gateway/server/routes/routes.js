@@ -12,15 +12,22 @@ const restream = function(proxyReq, req, res, options) {
         proxyReq.write(bodyData);
     }
 }
-let userProxy = proxy({ target: 'http://localhost:8500', changeOrigin: true, onProxyReq: restream })
 
 
 module.exports = function(app) {
+    let routesConfig
     let init
 
-    init = () => {
+    let userProxy
+
+    init = (routesConf) => {
+        routesConfig = routesConf
+        userProxy = proxy({ target: 'http://' + routesConfig.user_service.host, changeOrigin: true, onProxyReq: restream })
+
         app.all('*', (req, res, next) => {
+            console.log('')
             console.log('--- request -> ' + req.originalUrl)
+            console.log('--- params  -> ' + JSON.stringify(req.body))
             return next()
         })
 

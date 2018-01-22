@@ -56,7 +56,7 @@ module.exports = function() {
 
     initRoutes = function() {
         routes = require('./routes/routes')(app)
-        routes.init(app)
+        routes.init(config.routes)
     }
 
     return {
