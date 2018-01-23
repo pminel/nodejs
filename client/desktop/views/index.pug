@@ -1,0 +1,25 @@
+doctype html
+html
+
+    head
+        title=title
+        link(rel="stylesheet", href="/css/pminel.css")
+
+    body
+
+        div(class="window")
+
+            div(class="form-wrapper")
+                form(action="/login/doLogin" method="post")
+
+                    div(class="form-row")
+                        label Nome utente
+                        input(placeholder="Nome utente", type="text", name="username")
+
+                    div(class="form-row")
+                        label Password
+                        input(placeholder="Password", type="text", name="password")
+
+                    div(class="form-row-button")
+                        button(class="brown" type="submit") Accedi
+                        a(class="button" href="/resetPassword") Recupera password

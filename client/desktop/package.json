@@ -1,0 +1,18 @@
+{
+  "name": "desktop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "pminel",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "http-status": "^1.0.1",
+    "pug": "^2.0.0-rc.4",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  }
+}

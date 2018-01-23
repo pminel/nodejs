@@ -1,0 +1,64 @@
+button, a.button {
+    font-size: 14px;
+    text-decoration: none;
+    padding: 3px 10px;
+    color: #616161;
+    border: none;
+    background-color: transparent;
+    margin-right: 10px;
+
+    transition: background-color .25s, color .25s;
+}
+
+button:hover, a.button:hover {
+    color: #212121;
+    cursor: pointer;
+}
+
+
+
+
+button.brown, a.button.brown {
+    color: #FAFAFA;
+    background-color: #795548;
+}
+button.brown:hover, a.button.brown:hover {
+    color: #FAFAFA;
+    background-color: #3E2723;
+}
+
+
+
+
+button.blue, a.button.blue {
+    color: #FAFAFA;
+    background-color: #2196F3;
+}
+button.blue:hover, a.button.blue:hover {
+    color: #FAFAFA;
+    background-color: #1976D2;
+}
+
+
+
+
+button.yellow, a.button.yellow {
+    color: #FAFAFA;
+    background-color: #FFC107;
+}
+button.yellow:hover, a.button.yellow:hover {
+    color: #FAFAFA;
+    background-color: #FF6F00;
+}
+
+
+
+
+button.red, a.button.red {
+    color: #FAFAFA;
+    background-color: #F44336;
+}
+button.red:hover, a.button.red:hover {
+    color: #FAFAFA;
+    background-color: #B71C1C;
+}

@@ -1,0 +1,27 @@
+div.form-wrapper div.form-row {
+    margin: 10px 0;
+}
+
+div.form-wrapper div.form-row-button {
+    margin-top: 20px;
+}
+
+
+div.form-wrapper label, div.form-wrapper input, div.form-wrapper select {
+    display: block;
+    width: 100%;
+}
+
+
+div.form-wrapper label {
+    color: #795548;
+    font-size: 14px;
+}
+
+
+div.form-wrapper input {
+    color: #212121;
+    margin-top: 2px;
+    padding: 5px 7px;
+    border: .2px solid #E0E0E0;
+}

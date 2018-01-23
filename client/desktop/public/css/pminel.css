@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+@import url('window.css');
+@import url('form.css');
+@import url('button.css');
+
+* {
+    font-family: 'Titillium Web', sans-serif;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p, label, input, select, div {
+    margin: 0;
+    padding: 0;
+}
