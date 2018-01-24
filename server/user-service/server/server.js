@@ -23,10 +23,6 @@ module.exports = function() {
 
         app.use(bodyparser.json())
         app.use(bodyparser.urlencoded({ extended: false }))
-
-        /* const ssl_path = path.join(__dirname, '../ssl/')
-        ssl.key = fs.readFileSync(ssl_path + 'pminel.key')
-        ssl.cert = fs.readFileSync(ssl_path + 'pminel.cert') */
     }
 
     start = function() {
@@ -35,13 +31,7 @@ module.exports = function() {
 
         dbmysql.init(config.mysql)
         dbmysql.connect().then(() => {
-            /* https.createServer(ssl, app).listen(port, function() {
-                console.log('=== User service started ===')
-                console.log('=== listening on https://' + host + ':' + port + ' ===')
-                console.log('')
-                initRoutes()
-            }) */
-            http.createServer(app).listen(port, function() {
+            app.listen(port, function() {
                 console.log('=== User service started ===')
                 console.log('=== listening on http://' + host + ':' + port + ' ===')
                 console.log('')

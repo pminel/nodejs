@@ -1,7 +1,5 @@
 'use strict'
 
-const https = require('https')
-const fs = require('fs')
 const path = require('path')
 const express = require('express')
 const bodyparser = require('body-parser')
@@ -29,10 +27,6 @@ module.exports = function() {
 
         app.use(bodyparser.json())
         app.use(bodyparser.urlencoded({ extended: false }))
-
-        const ssl_path = path.join(__dirname, '../ssl/')
-        ssl.key = fs.readFileSync(ssl_path + 'pminel.key')
-        ssl.cert = fs.readFileSync(ssl_path + 'pminel.cert')
     }
 
     start = function() {
@@ -41,9 +35,9 @@ module.exports = function() {
 
         dbmysql.init(config.mysql)
         dbmysql.connect().then(() => {
-            https.createServer(ssl, app).listen(port, function() {
+            app.listen(port, function() {
                 console.log('=== API Gateway started ===')
-                console.log('=== listening on https://' + host + ':' + port + ' ===')
+                console.log('=== listening on http://' + host + ':' + port + ' ===')
                 console.log('')
                 initRoutes()
             })

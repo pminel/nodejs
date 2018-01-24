@@ -7,10 +7,10 @@ const router = express.Router()
 
 
 // get user info
-router.post('/info', function (req, res) {
+router.get('/info', function (req, res) {
     res.status(httpStatus.BAD_REQUEST).json({ success: false, message: 'No user id param found' })
 })
-router.post('/info/:id', function (req, res) {
+router.get('/info/:id', function (req, res) {
     const id = req.params.id
 
     if(!isNaN(id)) {

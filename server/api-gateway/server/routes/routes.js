@@ -34,7 +34,7 @@ module.exports = function(app) {
 
         app.use('/auth', require('./api/auth'))
 
-        app.use('/user', passport.authenticate('local', { session: false, failureRedirect: '/auth/noauth' }), userProxy)
+        app.use('/user', passport.authenticate('jwt', { session: false, failureRedirect: '/auth/noauth' }), userProxy)
     }
 
     return {

@@ -21,5 +21,8 @@ html
                         input(placeholder="Password", type="text", name="password")
 
                     div(class="form-row-button")
-                        button(class="brown" type="submit") Accedi
+                        button(class="blue" type="submit") Accedi
                         a(class="button" href="/resetPassword") Recupera password
+
+            if message!=null 
+                div(class="error-message")=message
