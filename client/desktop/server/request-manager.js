@@ -1,44 +1,21 @@
 'use strict'
 
 const request = require('request-promise')
-
-
-module.exports.doPost = (config) => {
-    const def = { baseUrl: 'http://localhost:8443', method: 'post', json: true }
-    const reqConfig = Object.assign(def, config)
-    return request(reqConfig)
-}
-
-module.exports.doGet = (config) => {
-    const def = { baseUrl: 'http://localhost:8443', method: 'get', json: true }
-    const reqConfig = Object.assign(def, config)
-    return request(reqConfig)
-}
-
-
-/* let requestPost = request.defaults({
-    baseUrl: 'http://localhost:8443',
-    method: 'post',
-    json: true
-})
-module.exports.execPost = (config) => {
-    return requestPost(config)
-}
-
-
-let requestGet = request.defaults({
-    baseUrl: 'http://localhost:8443',
-    method: 'get',
-    json: true
-})
-module.exports.execGet = (config) => {
-    return requestGet(config)
-}
+let defGet = { baseUrl: 'http://localhost:8443', method: 'get', json: true }
+let defPost = { baseUrl: 'http://localhost:8443', method: 'post', json: true }
 
 
 module.exports.setToken = (token) => {
-    requestPost.headers = { 'x-access-token': token }
-    requestGet.headers = { 'x-access-token': token }
-    console.log(requestPost)
-    console.log(requestGet)
-} */
+    defGet = Object.assign(defGet, { headers: { 'x-access-token': token } })
+    defPost = Object.assign(defPost, { headers: { 'x-access-token': token } })
+}
+
+module.exports.doGet = (config) => {
+    const reqConfig = Object.assign(defGet, config)
+    return request(reqConfig)
+}
+
+module.exports.doPost = (config) => {
+    const reqConfig = Object.assign(defPost, config)
+    return request(reqConfig)
+}

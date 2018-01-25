@@ -8,10 +8,8 @@ const router = express.Router()
 
 // get user info
 router.get('/info', function (req, res) {
-    res.status(httpStatus.BAD_REQUEST).json({ success: false, message: 'No user id param found' })
-})
-router.get('/info/:id', function (req, res) {
-    const id = req.params.id
+    const utente = req.body.user
+    const id = utente.idutente
 
     if(!isNaN(id)) {
         userModel.findById(id).then((rows) => {

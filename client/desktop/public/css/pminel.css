@@ -8,6 +8,12 @@
     box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    padding-top: 50px;
+}
+
 h1, h2, h3, h4, h5, h6, p, label, input, select, div {
     margin: 0;
     padding: 0;
@@ -18,4 +24,52 @@ h1, h2, h3, h4, h5, h6, p, label, input, select, div {
     font-size: 14px;
     width: 100%;
     padding: 10px 0 0 0;
+}
+
+/* div.section {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 1300px;
+    margin: 0 auto;
+} */
+
+
+
+
+div.north, div.west, div.center {
+    margin: 0;
+    padding: 0;
+}
+
+div.north {
+    position: absolute;
+    height: 80px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-bottom: .1px solid #3F51B5;
+    background-color: #FFFFFF;
+    box-shadow: 2px 2px 2px #DDDDDD;
+}
+
+div.west {
+    position: absolute;
+    height: calc(100% - 80px);
+    width: 300px;
+    top: 80px;
+    left: 0;
+    border-right: .1px solid #8BC34A;
+    background-color: #FFFFFF;
+}
+
+div.center {
+    position: absolute;
+    height: calc(100% - 80px);
+    width: calc(100% - 300px);
+    top: 80px;
+    left: 300px;
+    background-color: #FFFFFF;
 }

@@ -52,7 +52,7 @@ router.post('/', function (req, res) {
                             cognome: rowUtente.cognome,
                             email: rowUtente.email
                         }
-                        const signed = jwt.sign(token, 'my_token')
+                        const signed = jwt.sign(token, 'pminel@18')
                         res.status(httpStatus.OK).json({ success: true, message: 'User logged in', token: signed })
                     }
                     else res.status(httpStatus.OK).json({ success: false, message: 'Password not match' })

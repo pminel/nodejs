@@ -5,12 +5,13 @@ const passport = require('passport')
 
 const proxy = require('http-proxy-middleware')
 const restream = function(proxyReq, req, res, options) {
-    if (req.method == 'POST' && req.body) {
-        let bodyData = JSON.stringify(req.body);
-        proxyReq.setHeader('Content-Type','application/json');
-        proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData));
-        proxyReq.write(bodyData);
-    }
+    let bodyData = JSON.stringify({
+        params: req.body || {},
+        user: req.user || null
+    });
+    proxyReq.setHeader('Content-Type', 'application/json');
+    proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData));
+    proxyReq.write(bodyData);
 }
 
 
