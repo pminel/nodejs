@@ -24,6 +24,8 @@ module.exports = function(app) {
 
         app.use('/login', require('./api/login'))
         app.use('/main', require('./api/main'))
+        app.use('/user', require('./api/user'))
+        app.use('/profile', require('./api/profile'))
     }
 
     return {

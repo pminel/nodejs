@@ -2,6 +2,8 @@
 @import url('window.css');
 @import url('form.css');
 @import url('button.css');
+@import url('header-menu.css');
+@import url('page.css');
 
 * {
     font-family: 'Titillium Web', sans-serif;
@@ -11,12 +13,16 @@
 body {
     margin: 0;
     padding: 0;
-    padding-top: 50px;
+    padding-top: 100px;
 }
 
 h1, h2, h3, h4, h5, h6, p, label, input, select, div {
     margin: 0;
     padding: 0;
+}
+
+a, a * {
+    text-decoration: none;
 }
 
 .error-message {
@@ -26,7 +32,7 @@ h1, h2, h3, h4, h5, h6, p, label, input, select, div {
     padding: 10px 0 0 0;
 }
 
-/* div.section {
+div.section {
     margin: 0;
     padding: 0;
 }
@@ -34,12 +40,12 @@ h1, h2, h3, h4, h5, h6, p, label, input, select, div {
 .container {
     width: 1300px;
     margin: 0 auto;
-} */
+}
 
 
 
 
-div.north, div.west, div.center {
+/* div.north, div.west, div.center {
     margin: 0;
     padding: 0;
 }
@@ -72,4 +78,4 @@ div.center {
     top: 80px;
     left: 300px;
     background-color: #FFFFFF;
-}
+} */

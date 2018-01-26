@@ -3,7 +3,46 @@
 const dbmysql = require('../database/mysql')
 
 
-module.exports.findById = (idutente) => {
+module.exports.findById = async (idutente) => {
+    const query = 'SELECT * FROM emtutenti WHERE idutente=?'
+    const params = [idutente]
+    let jsonRows = null
+
+    const res = await dbmysql.getPool().getConnection().then((conn) => {
+        const data = conn.query(query, params)
+        conn.release()
+        return data
+    }).then((result) => {
+        var raw = result[0]
+        const rows = JSON.parse(JSON.stringify(raw))
+        return rows
+    })
+
+    return res
+
+    /* const pool = await dbmysql.getConnection()
+    console.log(pool.getConnection())
+
+    const res = pool.getConnection((err, conn) => {
+        conn.query(query, params, (err, rows) => {
+            console.log(rows)
+            if(err) console.log(err)
+            try { resolve(JSON.parse(JSON.stringify(rows))) }
+            catch(err) { console.log(err) }
+        })
+    })
+    console.log(res) */
+
+    //return null
+
+    /* return await dbmysql.getConnection().query(query, params, (err, rows) => {
+        if(err) console.log(err)
+        try {
+            jsonRows = JSON.parse(JSON.stringify(rows))
+        } catch(err) { console.log(err) }
+    }) */
+}
+/* module.exports.findById = (idutente) => {
     const query = 'SELECT * FROM emtutenti WHERE idutente=?'
     const params = [idutente]
 
@@ -18,7 +57,7 @@ module.exports.findById = (idutente) => {
             }
         })
     })
-}
+} */
 
 module.exports.findByUsername = (username) => {
     const query = 'SELECT * FROM emtutenti WHERE username=?'

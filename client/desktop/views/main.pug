@@ -1,8 +1,6 @@
-extends layout/layout
+extends layout/header
 block content
 
-    include layout/north.pug
-
-    include layout/center.pug
-
-    include layout/west.pug
+    div(class="section")
+        div(class="container")
+            h1=title

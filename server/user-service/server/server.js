@@ -25,12 +25,19 @@ module.exports = function() {
         app.use(bodyparser.urlencoded({ extended: false }))
     }
 
-    start = function() {
+    start = async function() {
         const host = app.get('host')
         const port = app.get('port')
 
         dbmysql.init(config.mysql)
-        dbmysql.connect().then(() => {
+        await dbmysql.connect()
+        app.listen(port, function() {
+            console.log('=== User service started ===')
+            console.log('=== listening on http://' + host + ':' + port + ' ===')
+            console.log('')
+            initRoutes()
+        })
+        /* dbmysql.connect().then(() => {
             app.listen(port, function() {
                 console.log('=== User service started ===')
                 console.log('=== listening on http://' + host + ':' + port + ' ===')
@@ -41,7 +48,7 @@ module.exports = function() {
             console.log('=== db connect error ===')
             console.log(err)
             console.log('========================')
-        })
+        }) */
     }
 
     initRoutes = function() {

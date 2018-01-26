@@ -1,0 +1,25 @@
+div.page-wrapper {
+    position: relative;
+}
+
+
+div.page-wrapper div.page-main, div.page-wrapper div.page-right {
+    padding: 30px 20px;
+    display: inline-block;
+}
+
+
+div.page-main {
+    position: absolute;
+    top: 0;
+    width: calc(80% - 20px);
+    background-color: #FAFAFA;
+}
+
+
+div.page-right {
+    position: absolute;
+    top: 0;
+    left: 80%;
+    width: 20%;
+}

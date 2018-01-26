@@ -1,0 +1,43 @@
+div.header-menu-container {
+    float: right;
+    position: relative;
+    top: 15px;
+}
+
+
+div.header-menu-item {
+    display: inline-block;
+    margin-left: 20px;
+    text-align: center;
+}
+
+
+div.header-menu-item-image div {
+    color: #212121;
+    font-size: 16px;
+    transition: color .25s;
+}
+
+
+div.header-menu-item-title {
+    font-size: 12px;
+    color: #212121;
+    transition: color .25s;
+}
+
+
+
+
+
+
+div.header-menu-item:hover {
+    cursor: pointer;
+}
+
+div.header-menu-item:hover div.header-menu-item-image div {
+    color: #2E7D32;
+}
+
+div.header-menu-item:hover div.header-menu-item-title {
+    color: #2E7D32;
+}
