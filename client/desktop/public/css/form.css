@@ -1,6 +1,6 @@
 div.form-wrapper div.form-row {
     display: block;
-    margin: 10px 0;
+    margin: 15px 0;
 }
 
 div.form-wrapper div.form-row-button {
@@ -15,7 +15,7 @@ div.form-wrapper label, div.form-wrapper input, div.form-wrapper select {
 
 
 div.form-wrapper label {
-    color: #795548;
+    color: #616161;
     font-size: 14px;
 }
 
@@ -23,12 +23,26 @@ div.form-wrapper label {
 div.form-wrapper input, div.form-wrapper select {
     color: #212121;
     margin-top: 2px;
-    padding: 5px 7px;
+    padding: 7px 7px;
     border: .2px solid #E0E0E0;
     background-color: #FFFFFF;
     outline: none;
     transition: box-shadow .25s;
 }
-div.form-wrapper input:focus {
+div.form-wrapper select {
+    padding: 7px 3px;
+}
+div.form-wrapper input:focus, div.form-wrapper select:focus {
     box-shadow: 0 0 5px #DDDDDD;
+}
+
+
+
+span.error-message {
+    font-size: .75rem;
+    display: block;
+}
+div.form-wrapper input.error, div.form-wrapper select.error {
+    border: .2px solid #B71C1C;
+    background-color: rgba(183,28,28,.05)
 }

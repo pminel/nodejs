@@ -9,27 +9,23 @@ block content
                 div(class="page-main")
                     h2 Dati utente
 
-                    div(class="form-wrapper")
-                        form(action="/user/doUpdate" method="post")
-                            div(class="form-row")
-                                label Nome utente
-                                input(placeholder="Nome utente", type="text", name="username", value=data.utente.username)
-                            div(class="form-row")
-                                label Nome
-                                input(placeholder="Nome", type="text", name="nome", value=data.utente.nome)
-                            div(class="form-row")
-                                label Cognome
-                                input(placeholder="Cognome", type="text", name="cognome", value=data.utente.cognome)
-                            div(class="form-row")
-                                label Email
-                                input(placeholder="Email", type="email", name="email", value=data.utente.email)
-                            div(class="form-row")
-                                label Profilo
-                                select(placeholder="Profilo", value=data.utente.idprofilo)
-                                    each profilo in data.listaProfili
-                                        option(value=profilo.idprofilo)=profilo.nome
-                                    
-                            div(class="form-row-button")
-                                button(class="blue" type="button") Aggiorna
+                    <pm-form action="/user/doUpdatePassword">
+                        - const username = data.utente.username
+                        - const nome = data.utente.nome
+                        - const cognome = data.utente.cognome
+                        - const email = data.utente.email
+                        <pm-form-input label="Nome utente" type="text" name="username" required="required" value="#{username}"></pm-form-input>
+                        <pm-form-input label="Nome" type="text" name="nome" required="required" value="#{nome}"></pm-form-input>
+                        <pm-form-input label="Cognome" type="text" name="cognome" required="required" value="#{cognome}"></pm-form-input>
+                        <pm-form-input label="Email" type="email" name="email" required="required" value="#{email}"></pm-form-input>
+                        <pm-form-select label="Profilo" name="idprofilo" required="required">
+                            each profilo in data.listaProfili
+                                - const idprofilo = profilo.idprofilo
+                                - const descrprofilo = profilo.nome + ' (' + profilo.descrizione + ')'
+                                - const select = (profilo.idprofilo == data.utente.idprofilo)
+                                <pm-form-option value="#{idprofilo}" select="#{select}" label="#{descrprofilo}"></pm-form-option>
+                        </pm-form-select>
+                        <pm-form-button class="blue" label="Aggiorna" type="submit"></pm-form-button>
+                    </pm-form>
 
                 div(class="page-right")

@@ -15,7 +15,7 @@ module.exports.findById = async (idutente) => {
     }).then((result) => {
         var raw = result[0]
         const rows = JSON.parse(JSON.stringify(raw))
-        return rows
+        return rows[0]
     })
 
     return res
@@ -59,21 +59,22 @@ module.exports.findById = async (idutente) => {
     })
 } */
 
-module.exports.findByUsername = (username) => {
+module.exports.findByUsername = async (username) => {
     const query = 'SELECT * FROM emtutenti WHERE username=?'
     const params = [username]
+    let jsonRows = null
 
-    return new Promise((resolve, reject) => {
-        dbmysql.getConnection().query(query, params, (err, rows) => {
-            if(err) reject(err)
-            try {
-                const jsonRows = JSON.parse(JSON.stringify(rows))
-                resolve(jsonRows)
-            } catch(error) {
-                reject(error)
-            }
-        })
+    const res = await dbmysql.getPool().getConnection().then((conn) => {
+        const data = conn.query(query, params)
+        conn.release()
+        return data
+    }).then((result) => {
+        var raw = result[0]
+        const rows = JSON.parse(JSON.stringify(raw))
+        return rows[0]
     })
+
+    return res
 }
 
 module.exports.getLastPassword = (idutente) => {

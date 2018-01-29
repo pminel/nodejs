@@ -4,7 +4,7 @@ const dbmysql = require('../database/mysql')
 
 
 module.exports.getList = async () => {
-    const query = 'SELECT * FROM emtprofili'
+    const query = 'SELECT * FROM emtprofili ORDER BY nome'
 
     const res = await dbmysql.getPool().getConnection().then((conn) => {
         const data = conn.query(query)

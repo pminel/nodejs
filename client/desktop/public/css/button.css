@@ -6,7 +6,7 @@ button, a.button {
     border: none;
     background-color: transparent;
     margin-right: 10px;
-
+    border-radius: 3px;
     transition: background-color .25s, color .25s;
 }
 
