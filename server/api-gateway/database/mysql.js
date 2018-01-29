@@ -8,19 +8,26 @@ module.exports.init = (conf) => {
     config = conf
 }
 
-module.exports.connect = () => {
-    return new Promise((resolve, reject) => {
-        try {
-            pool = mysql.createPool(config)
-            console.log('=== MYSQL connected ===')
-
-            resolve()
-        } catch(error) {
-            reject(error)
-        }
-    })
+module.exports.connect = async () => {
+    try {
+        pool = await mysql.createPool(config)
+        console.log('=== MYSQL created ===')
+    } catch(err) {
+        console.log(err)
+    }
 }
 
-module.exports.getConnection = () => {
+/* module.exports.connect = async () => {
+    try {
+        pool = await mysql.createPool(config)
+        console.log('=== MYSQL connected ===')
+    } catch(err) {
+        pool = null
+        console.log(err)
+    }
+    return
+} */
+
+module.exports.getPool = () => {
     return pool
 }

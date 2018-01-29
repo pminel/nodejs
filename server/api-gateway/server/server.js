@@ -10,7 +10,7 @@ let routes
 
 
 module.exports = function() {
-    let app, config, ssl = { requestCert: false, rejectUnauthorized: false }
+    let app, config
     let create, init, start, initRoutes
 
     create = function(conf) {
@@ -34,6 +34,22 @@ module.exports = function() {
         const port = app.get('port')
 
         dbmysql.init(config.mysql)
+        dbmysql.connect()
+        
+        /* .then(() => { */
+            app.listen(port, function() {
+                console.log('=== API Gateway started ===')
+                console.log('=== listening on http://' + host + ':' + port + ' ===')
+                console.log('')
+                initRoutes()
+            })
+        /*}).catch((err) => {
+            console.log('=== db connect error ===')
+            console.log(err)
+            console.log('========================')
+        }) */
+
+        /* dbmysql.init(config.mysql)
         dbmysql.connect().then(() => {
             app.listen(port, function() {
                 console.log('=== API Gateway started ===')
@@ -45,7 +61,7 @@ module.exports = function() {
             console.log('=== db connect error ===')
             console.log(err)
             console.log('========================')
-        })
+        }) */
     }
 
     initRoutes = function() {

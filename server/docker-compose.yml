@@ -1,17 +1,40 @@
 version: '3'
 
 services:
-  
-  user-service:
-    build: ./user-service
+
+  db:
+    image: mysql:5.7
+    container_name: pminel-database
     ports:
-      - "8500"
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: pmRoot
+      MYSQL_DATABASE: pminel
+      MYSQL_USER: paolo
+      MYSQL_PASSWORD: super
+  
+#  user-service:
+#    build: ./user-service
+#    ports:
+#      - "8500"
+#    links:
+#      - db
+#    environment:
+#      - DB_HOST=db
+#      - DB_PORT=3306
+#      - DB_USER=paolo
+#      - DB_PASSWORD=super
 
   api-gateway:
     build: ./api-gateway
     ports:
       - "8443:8443"
     links:
-      - user-service
+      - db
+#      - user-service
     environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=paolo
+      - DB_PASSWORD=super
       - USER_SERVICE_HOST=user-service:8500
