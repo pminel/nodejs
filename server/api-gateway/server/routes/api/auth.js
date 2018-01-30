@@ -28,19 +28,11 @@ router.post('/', async (req, res) => {
     const password = req.body.password;
 
     const utente = await userModel.findByUsername(username)
-    console.log(utente)
-
-
     const pass = await userModel.getLastPassword(utente.idutente)
-    console.log(pass)
-
 
     const lastPassword = pass.segreto
     const hashPassword = hashText(password)
 
-    console.log(lastPassword)
-    console.log(hashPassword)
-    
     // check if last password is equal to hash of given password
     if(lastPassword === hashPassword) {
         const token = {
@@ -51,7 +43,7 @@ router.post('/', async (req, res) => {
             email: utente.email
         }
         const signed = jwt.sign(token, 'pminel@18')
-        res.status(httpStatus.OK).json({ success: true, message: 'User logged in', token: signed })
+        res.status(httpStatus.OK).json({ success: true, message: 'User logged in', data: signed })
     }
     else res.status(httpStatus.OK).json({ success: false, message: 'Password not match' })
 })

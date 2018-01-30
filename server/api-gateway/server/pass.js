@@ -15,25 +15,14 @@ var opts = {
 }
 
 passport.use(new JwtStrategy(opts, 
-    function(jwt_payload, done) {
-
-        // extract user by id
-        userModel.findById(jwt_payload.idutente).then((rows) => {
-            if(rows == null || rows.length != 1) return done(null, false, { error: 'No user identified by username=' + username })
-            else {
-                // user row
-                const rowUtente = rows[0]
-                return done(null, {
-                    idutente: rowUtente.idutente,
-                    username: rowUtente.username,
-                    nome: rowUtente.nome,
-                    cognome: rowUtente.cognome,
-                    email: rowUtente.email
-                })
-            }
-        }).catch((error) => {
-            console.log(error)
-            return done(null, false, { error: 'Database communication error' })
+    async function(jwt_payload, done) {
+        const utente = await userModel.findById(jwt_payload.idutente)
+        return done(null, {
+            idutente: utente.idutente,
+            username: utente.username,
+            nome: utente.nome,
+            cognome: utente.cognome,
+            email: utente.email
         })
     }
 ))

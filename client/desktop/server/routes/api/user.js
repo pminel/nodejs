@@ -8,53 +8,46 @@ const requestManager = require('../../request-manager')
 
 // get user data page
 router.get('/', (req, res) => { res.redirect('/getUser') });
-router.get('/getUser', (req, res) => {
 
-    requestManager.doGet({ uri: '/user/info' }).then((response) => {
-        let options = {}
-        if(response.success) {
-            const data = response.data
-            const message = response.message
-            options = Object.assign(options, { title: 'Dati utente', data: data, message: message })
-        } else {
-            const message = response.message
-            options = Object.assign(options, { title: 'Errore', data: null, message: message })
-        }
-        res.render('user', options)
-    }).catch((err) => {
-        console.log(err)
-    })
+// get user data page
+router.get('/getUser', async (req, res) => {
+    const utente = await requestManager.doGet({ uri: '/user/getInfo' })
+    const listaProfili = await requestManager.doGet({ uri: '/user/getRoleList' })
+    const data = { utente: utente, listaProfili: listaProfili }
+    res.render('user', { title: 'Dati utente', data: data })
 })
+
+// do user data update
+router.post('/doUpdateUser', async (req, res) => {
+    const idutente = req.body.idutente
+    const nome = req.body.nome
+    const cognome = req.body.cognome
+    const email = req.body.email
+    const idprofilo = req.body.idprofilo
+    const params = { idutente: idutente, nome: nome, cognome: cognome, email: email, idprofilo: idprofilo }
+    const result = requestManager.doPost({ uri: '/user/update', body: params })
+    res.redirect('/user/getUser')
+})
+
+
 
 
 // get edit user password page
-router.get('/updatePassword', (req, res) => {
-    res.render('password', { title: 'Modifica password' })
-})
-
+router.get('/getPassword', (req, res) => { res.render('password', { title: 'Modifica password' }) })
 
 // do user password update
-router.post('/doPasswordUpdate', function (req, res) {
+router.post('/doUpdatePassword', function (req, res) {
     const actPassword = req.body['act-pwd']
     const newPassword = req.body['new-pwd']
     const newPasswordConfirm = req.body['new-pwd-confirm']
 
-    // check data
-    let message = '', errors = {}, valid = true
-    if(!actPassword) {
-        valid = false
-        errors['act-password'] = 'Campo obbligatorio'
-        message += 'Password attuale non inserita. '
-    }
-    if(!newPassword) {
-        valid = false
-        message += 'Nuova password non inserita.'
-    }
-    if(!newPasswordConfirm) {
-        valid = false
-        message += 'Conferma nuova password non inserita.'
+    // check new password and re-password
+    if(newPassword != newPasswordConfirm) {
+        alert('La nuova password e la password di conferma non coincidono.')
+        return
     }
 
+    
     //if(!valid) res.json({ errors: { 'act-password' }, message: message })
 })
 

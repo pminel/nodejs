@@ -37,18 +37,6 @@ module.exports = function() {
             console.log('')
             initRoutes()
         })
-        /* dbmysql.connect().then(() => {
-            app.listen(port, function() {
-                console.log('=== User service started ===')
-                console.log('=== listening on http://' + host + ':' + port + ' ===')
-                console.log('')
-                initRoutes()
-            })
-        }).catch((err) => {
-            console.log('=== db connect error ===')
-            console.log(err)
-            console.log('========================')
-        }) */
     }
 
     initRoutes = function() {
@@ -57,7 +45,7 @@ module.exports = function() {
             return next()
         })
         
-        app.use('/user', require('./routes/routes'))
+        app.use('/user', require('./routes/user'))
     }
 
     return {

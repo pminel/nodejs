@@ -17,17 +17,6 @@ module.exports.connect = async () => {
     }
 }
 
-/* module.exports.connect = async () => {
-    try {
-        pool = await mysql.createPool(config)
-        console.log('=== MYSQL connected ===')
-    } catch(err) {
-        pool = null
-        console.log(err)
-    }
-    return
-} */
-
 module.exports.getPool = () => {
     return pool
 }
