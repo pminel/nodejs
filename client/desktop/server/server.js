@@ -2,6 +2,7 @@
 
 const path = require('path')
 const express = require('express')
+const session = require('express-session')
 const bodyparser = require('body-parser')
 let routes
 
@@ -19,6 +20,14 @@ module.exports = function() {
         app.set('env', config.server.env)
         app.set('host', config.server.host)
         app.set('port', config.server.port)
+
+        app.set('trust proxy', 1)
+        app.use(session({
+            secret: 'pMinel#Sess@18',
+            resave: false,
+            saveUninitialized: true,
+            cookie: { secure: false }
+        }))
 
         app.use(express.static(path.join(__dirname, '../public')))
 

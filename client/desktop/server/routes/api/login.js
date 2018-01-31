@@ -21,8 +21,13 @@ router.post('/doLogin', async (req, res) => {
     const password = req.body.password
     const params = { username: username, password: password }
 
-    const token = await requestManager.doPost({ uri: '/auth', body: params })
+    const response = await requestManager.doPost({ uri: '/auth', body: params })
+    const token = response.token
+    const utente = response.utente
+
     requestManager.setToken(token)
+    req.session.utente = utente
+
     res.redirect('/main')
 })
 

@@ -17,6 +17,17 @@ button:hover, a.button:hover {
 
 
 
+button.green, a.button.green {
+    color: #FAFAFA;
+    background-color: #4CAF50;
+}
+button.brown:hover, a.button.brown:hover {
+    color: #FAFAFA;
+    background-color: #1B5E20;
+}
+
+
+
 
 button.brown, a.button.brown {
     color: #FAFAFA;

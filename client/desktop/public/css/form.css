@@ -35,6 +35,9 @@ div.form-wrapper select {
 div.form-wrapper input:focus, div.form-wrapper select:focus {
     box-shadow: 0 0 5px #DDDDDD;
 }
+div.form-wrapper input[readonly], div.form-wrapper select[readonly] {
+    background-color: #FFF9C4;
+}
 
 
 

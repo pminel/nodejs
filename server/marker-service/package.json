@@ -1,0 +1,16 @@
+{
+  "name": "marker-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "pminel",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "http-status": "^1.0.1",
+    "mysql": "^2.15.0"
+  }
+}

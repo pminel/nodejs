@@ -20,9 +20,6 @@ router.get('/noauth', function (req, res) {
 })
 
 // authenticate
-/* router.post('/', passport.authenticate('jwt', { session: false, failureRedirect: '/auth/noauth' }), function (req, res) {
-    res.status(httpStatus.OK).json({ success: true, message: 'User logged in', token: req.user })
-}) */
 router.post('/', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -43,7 +40,7 @@ router.post('/', async (req, res) => {
             email: utente.email
         }
         const signed = jwt.sign(token, 'pminel@18')
-        res.status(httpStatus.OK).json({ success: true, message: 'User logged in', data: signed })
+        res.status(httpStatus.OK).json({ success: true, message: 'User logged in', data: { token: signed, utente: utente } })
     }
     else res.status(httpStatus.OK).json({ success: false, message: 'Password not match' })
 })

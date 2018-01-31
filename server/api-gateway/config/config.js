@@ -18,6 +18,10 @@ const routesconfig = {
     user_service: {
         host: process.env.USER_SERVICE_HOST || 'localhost',
         port: process.env.USER_SERVICE_PORT || '8500'
+    },
+    marker_service: {
+        host: process.env.MARKER_SERVICE_HOST || 'localhost',
+        port: process.env.MARKER_SERVICE_PORT || '8501'
     }
 }
 

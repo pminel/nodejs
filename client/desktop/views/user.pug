@@ -1,4 +1,4 @@
-extends layout/header
+extends header
 block content
 
     div(class="section")
@@ -10,12 +10,10 @@ block content
                     h2 Dati utente
 
                     <pm-form action="/user/doUpdateUser">
-                        - const idutente = data.utente.idutente
                         - const username = data.utente.username
                         - const nome = data.utente.nome
                         - const cognome = data.utente.cognome
                         - const email = data.utente.email
-                        <pm-form-input label="Id utente" type="hidden" name="idutente" required="required" value="#{idutente}"></pm-form-input>
                         <pm-form-input label="Nome utente" type="text" name="username" required="required" value="#{username}"></pm-form-input>
                         <pm-form-input label="Nome" type="text" name="nome" required="required" value="#{nome}"></pm-form-input>
                         <pm-form-input label="Cognome" type="text" name="cognome" required="required" value="#{cognome}"></pm-form-input>
@@ -31,3 +29,5 @@ block content
                     </pm-form>
 
                 div(class="page-right")
+
+    script(src='/js/user/user.js')

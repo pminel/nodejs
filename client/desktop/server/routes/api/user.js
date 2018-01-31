@@ -19,14 +19,17 @@ router.get('/getUser', async (req, res) => {
 
 // do user data update
 router.post('/doUpdateUser', async (req, res) => {
-    const idutente = req.body.idutente
+    const idutente = req.session.utente.idutente
+
     const nome = req.body.nome
     const cognome = req.body.cognome
     const email = req.body.email
     const idprofilo = req.body.idprofilo
     const params = { idutente: idutente, nome: nome, cognome: cognome, email: email, idprofilo: idprofilo }
-    const result = requestManager.doPost({ uri: '/user/update', body: params })
-    res.redirect('/user/getUser')
+
+    const result = await requestManager.doPost({ uri: '/user/update', body: params })
+
+    res.status(httpStatus.OK).json({ success: true, message: 'User updated', data: result, redirectTo: '/user/getUser' })
 })
 
 
@@ -36,7 +39,9 @@ router.post('/doUpdateUser', async (req, res) => {
 router.get('/getPassword', (req, res) => { res.render('password', { title: 'Modifica password' }) })
 
 // do user password update
-router.post('/doUpdatePassword', function (req, res) {
+router.post('/doUpdatePassword', async (req, res) => {
+    const idutente = req.session.utente.idutente
+
     const actPassword = req.body['act-pwd']
     const newPassword = req.body['new-pwd']
     const newPasswordConfirm = req.body['new-pwd-confirm']
@@ -47,8 +52,9 @@ router.post('/doUpdatePassword', function (req, res) {
         return
     }
 
-    
-    //if(!valid) res.json({ errors: { 'act-password' }, message: message })
+    const params = { idutente: idutente, actPassword: actPassword, newPassword: newPassword }
+    const result = await requestManager.doPost({ uri: '/user/updatePassword', body: params })
+    res.redirect('/user/getUser')
 })
 
 

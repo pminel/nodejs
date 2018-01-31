@@ -1,0 +1,26 @@
+extends ../header
+block content
+
+    div(class="section")
+        div(class="container")
+
+            div(class="page-wrapper")
+
+                div(class="page-main")
+                    h2 Nuova marcatura
+
+                    <pm-form action="/marker/doAdd">
+                        <pm-form-input label="Data" type="text" name="data" required="required" readonly="readonly"></pm-form-input>
+                        <pm-form-input label="Ora" type="text" name="ora" required="required" readonly="readonly"></pm-form-input>
+                        <pm-form-select label="Tipo marcatura" name="idmarcaturatipo" required="required">
+                            each tipo in data.listaTipoMarcatura
+                                - const idmarcaturatipo = tipo.idmarcaturatipo
+                                - const descrmarcaturatipo = tipo.descrizione + ' (' + tipo.nome + ')'
+                                <pm-form-option value="#{idmarcaturatipo}" label="#{descrmarcaturatipo}"></pm-form-option>
+                        </pm-form-select>
+                        <pm-form-button class="green" label="Inserisci" type="submit"></pm-form-button>
+                    </pm-form>
+
+                div(class="page-right")
+
+    script(src='/js/marker/add.js')
